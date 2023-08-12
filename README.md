@@ -2,15 +2,11 @@
 
 A Flutter Project of compilation of everything I learn about flutter.
 
-## Getting Started
+## Build Command
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Localization 코드 생성
+    - `flutter pub run intl_utils:generate`
+- JSON 직렬화/역직렬화 코드 생성을 위해 Build Runner 실행
+    - `flutter pub run build_runner build --delete-conflicting-outputs`
+- 빌드
+    - `flutter build [appbundle|apk|ios|ipa] -t lib/config/env/[development|production].dart --flavor [development|production]`
