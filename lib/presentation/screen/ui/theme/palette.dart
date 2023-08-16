@@ -58,7 +58,6 @@ class Palette {
 
   static const mainColors = [
     black01Basic,
-    white01Basic,
     red03Basic,
     retroPink03Basic,
     retroBlue03Basic,
