@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-
-import 'package:fluro/fluro.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_note/exports.dart';
 
 class Application extends StatefulWidget {
@@ -20,14 +16,6 @@ class _ApplicationState extends State<Application> {
     return _InheritedApplication(
       state: this,
       child: MaterialApp(
-        // localizationsDelegates: const [
-        //   S.delegate,
-        //   GlobalMaterialLocalizations.delegate,
-        //   GlobalCupertinoLocalizations.delegate,
-        //   GlobalWidgetsLocalizations.delegate,
-        // ],
-        // supportedLocales: S.delegate.supportedLocales,
-        // theme: AppTheme.appTheme,
         themeMode: ThemeMode.light,
         onGenerateRoute: AppNavigator.routeGenerator,
         initialRoute: AppPath.main,

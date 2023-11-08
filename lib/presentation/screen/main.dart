@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_note/exports.dart';
 import 'package:flutter_note/presentation/screen/ui/theme/palette.dart';
 
 class MainScreen extends StatefulWidget {
@@ -71,18 +72,23 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   Widget _menuCard(int index, Color color) {
-    return Container(
-      margin: _getMargin(index),
-      decoration:
-          BoxDecoration(color: color, borderRadius: BorderRadius.circular(10)),
-      child: const Center(
-        child: Text(
-          'Test',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 32,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
+    return GestureDetector(
+      onTap: () {
+        AppNavigator.navigateTo(context, AppPath.unsplash);
+      },
+      child: Container(
+        margin: _getMargin(index),
+        decoration:
+            BoxDecoration(color: color, borderRadius: BorderRadius.circular(10)),
+        child: const Center(
+          child: Text(
+            'Test',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 32,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
           ),
         ),
       ),
