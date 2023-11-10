@@ -10,6 +10,8 @@ part 'api_client.dart';
 
 part 'api_interceptor.dart';
 
+part 'unsplash_key.dart';
+
 class NetworkDataSourceImpl extends NetworkDataSource {
   final _ApiClient _client;
 

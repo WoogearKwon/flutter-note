@@ -511,3 +511,6 @@ lib/**/*.g.dart
 
 # fvm configuration
 .fvm/
+
+# sceret key
+unsplash_key.dart

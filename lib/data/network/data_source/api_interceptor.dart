@@ -7,7 +7,7 @@ class _ApiInterceptor extends QueuedInterceptorsWrapper {
     RequestInterceptorHandler handler,
   ) async {
     options.headers['Accept-Version'] = 'v1';
-    options.headers['Authorization'] = 'Client-ID 36hXFCoHgKKugrkShTydblokird_mW5guRGCA9TELBc';
+    options.headers['Authorization'] = _accessKey;
 
     handler.next(options);
   }
