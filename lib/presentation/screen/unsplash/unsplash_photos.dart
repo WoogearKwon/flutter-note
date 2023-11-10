@@ -12,24 +12,26 @@ class UnsplashPhotosScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<UnsplashPhotosViewModel>(
       builder: (context, viewModel, child) => Scaffold(
-        body: SingleChildScrollView(
-          child: Container(
-            // use it as child so that it doesn't need to be rebuilt.
-            width: double.infinity,
-            color: Palette.retroBlue02Light,
-            child: GridView.count(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              crossAxisCount: 2,
-              children: List.generate(viewModel.photos.length, (index) {
-
-                return GestureDetector(
-                  onTap: () {},
-                  child: Center(
-                    child: Image.network(viewModel.photos[index].urls.thumb),
-                  ),
-                );
-              }),
+        appBar: AppBar(
+          title: const Text('Unsplash Photos'),
+        ),
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: SizedBox(
+              // use it as child so that it doesn't need to be rebuilt.
+              width: double.infinity,
+              child: GridView.count(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                crossAxisCount: 2,
+                children: List.generate(viewModel.photos.length, (index) {
+                  return GestureDetector(
+                    onTap: () {},
+                    child: Image.network(viewModel.photos[index].urls.thumb,
+                        fit: BoxFit.cover),
+                  );
+                }),
+              ),
             ),
           ),
         ),
