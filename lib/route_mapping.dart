@@ -13,6 +13,10 @@ final _mainHandler = Handler(
 
 final _unsplash = Handler(
   handlerFunc: (context, params) {
-    return const UnsplashScreen();
+    // return const UnsplashPhotosScreen();
+    return ChangeNotifierProvider(
+        create: (context) =>
+            UnsplashPhotosViewModel(unsplashRepository: Injector.find()),
+        child: const UnsplashPhotosScreen());
   },
 );

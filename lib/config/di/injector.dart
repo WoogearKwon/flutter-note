@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter_note/exports.dart';
 import 'package:get_it/get_it.dart';
 
 class Injector {
@@ -12,5 +13,9 @@ class Injector {
   }
 
   static Future<void> init() async {
+    _instance.registerSingleton<NetworkDataSource>(NetworkDataSourceImpl());
+
+    _instance.registerSingleton<UnsplashRepository>(
+        UnsplashRepositoryImpl(networkDataSource: Injector.find()));
   }
 }

@@ -1,2 +1,2 @@
 export 'main.dart';
-export 'unsplash/unsplash.dart';
+export 'unsplash/unsplash_photos.dart';
