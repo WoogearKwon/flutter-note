@@ -19,24 +19,21 @@ class NetworkDataSourceImpl extends NetworkDataSource {
 
   @override
   Future<List<NetworkUnsplashPhoto>> getUnsplashPhotos() async {
-    final response = await _client.get('/photos');
-    final photos = (response.data as List)
-        .map((e) => NetworkUnsplashPhoto.fromJson(e))
-        .toList(growable: false);
-
-    return photos;
-
     try {
-      // final response = await _client.get('/photos');
-      // final photos = (response.data as List)
-      //     .map((e) => NetworkUnsplashPhoto.fromJson(e))
-      //     .toList(growable: false);
-      //
-      // return photos;
-    } on DioException catch (e) {
+      final response = await _client.get('/photos');
+      final photos = (response.data as List)
+          .map((e) => NetworkUnsplashPhoto.fromJson(e))
+          .toList(growable: false);
 
-    } catch (e) {
-
+      return photos;
+    } on DioException catch (error) {
+      throw error.asNetworkError();
+    } catch (error, stack) {
+      Logger.e('[getUnsplashPhotos][ERROR] :: $error => $stack');
+      throw DomainError(
+        errorCode: ErrorCode.unknown,
+        cause: error,
+      );
     }
   }
 }

@@ -14,8 +14,11 @@ class UnsplashPhotosViewModel extends ChangeNotifier {
     try {
       photos = await unsplashRepository.getPhotos();
       notifyListeners();
+    } on DomainError catch (error) {
+      Logger.e('[unsplash:photos] :: $error => ${error.cause}');
     } catch (error, stack) {
       Logger.e('[unsplash:photos] :: $error => $stack');
+      rethrow;
     }
   }
 }
