@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_note/presentation/screen/ui/theme/palette.dart';
 import 'package:provider/provider.dart';
+
 import 'unsplash_photos_view_model.dart';
 
 export 'unsplash_photos_view_model.dart';
@@ -25,7 +25,7 @@ class UnsplashPhotosScreen extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 crossAxisCount: 2,
                 children: List.generate(viewModel.photos.length, (index) {
-                  return GestureDetector(
+                  return InkWell(
                     onTap: () {},
                     child: Image.network(viewModel.photos[index].urls.thumb,
                         fit: BoxFit.cover),
