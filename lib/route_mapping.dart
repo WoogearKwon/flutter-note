@@ -11,6 +11,7 @@ Map<String, Handler> get _routeMapping => <String, Handler>{
       AppPath.main: _mainHandler,
       AppPath.catalogs: _catalogsHandler,
       AppPath.unsplash: _unsplash,
+      AppPath.customChart: _customChart,
     };
 
 final _mainHandler = Handler(
@@ -35,5 +36,11 @@ final _unsplash = Handler(
         create: (context) =>
             UnsplashPhotosViewModel(unsplashRepository: Injector.find()),
         child: const UnsplashPhotosScreen());
+  },
+);
+
+final _customChart = Handler(
+  handlerFunc: (context, params) {
+    return const CustomChartScreen();
   },
 );

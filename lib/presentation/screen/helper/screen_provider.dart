@@ -15,7 +15,13 @@ class ScreenProvider {
       title: 'Canvas Drawing',
       description: '',
       type: AppCatalogType.canvas,
-      screens: [],
+      screens: [
+        AppScreen(
+            title: "Custom Chart",
+            description: "2 Types of Custom Chart view",
+            type: AppScreenType.customChart
+        ),
+      ],
     ),
     AppCatalog(
       title: 'Small Apps',
