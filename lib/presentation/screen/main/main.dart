@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_note/exports.dart';
-import 'package:flutter_note/presentation/screen/ui/theme/palette.dart';
 
 @immutable
 class MainScreenArgs {

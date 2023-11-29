@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_note/exports.dart';
 
@@ -53,8 +55,17 @@ class CatalogScreen extends StatelessWidget {
       child: Container(
         margin: _getMargin(index),
         decoration: BoxDecoration(
-            color: Palette.retroYellow04Dark,
-            borderRadius: BorderRadius.circular(10)),
+          color: Palette
+              .mainColors[Random().nextInt(Palette.mainColors.length - 1)],
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.grey,
+              offset: Offset(3.0, 3.0),
+              blurRadius: 3.0,
+            ),
+          ]
+        ),
         child: Center(
           child: Text(
             appScreen.title,
@@ -72,9 +83,9 @@ class CatalogScreen extends StatelessWidget {
 
   EdgeInsets _getMargin(int index) {
     if (index % 2 == 0) {
-      return const EdgeInsets.only(left: 5, right: 2.5, bottom: 5);
+      return const EdgeInsets.only(left: 5, right: 2.5, top: 5);
     }
 
-    return const EdgeInsets.only(left: 2.5, right: 5, bottom: 5);
+    return const EdgeInsets.only(left: 2.5, right: 5, top: 5);
   }
 }
