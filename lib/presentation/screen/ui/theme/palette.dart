@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class Palette {
@@ -82,29 +84,29 @@ class Palette {
   static const paletteSky40050p = Color(0x800098B2);
   static const paletteSky40030p = Color(0x4A0098B2);
 
-  static const paletteLightblue100 = Color(0xFF189DF0);
-  static const paletteLightblue10090p = Color(0xE6189DF0);
-  static const paletteLightblue10070p = Color(0xB3189DF0);
-  static const paletteLightblue10050p = Color(0x80189DF0);
-  static const paletteLightblue10030p = Color(0x4A189DF0);
+  static const paletteLightBlue100 = Color(0xFF189DF0);
+  static const paletteLightBlue10090p = Color(0xE6189DF0);
+  static const paletteLightBlue10070p = Color(0xB3189DF0);
+  static const paletteLightBlue10050p = Color(0x80189DF0);
+  static const paletteLightBlue10030p = Color(0x4A189DF0);
 
-  static const paletteLightblue200 = Color(0xFF0F8BD9);
-  static const paletteLightblue20090p = Color(0xE60F8BD9);
-  static const paletteLightblue20070p = Color(0xB30F8BD9);
-  static const paletteLightblue20050p = Color(0x800F8BD9);
-  static const paletteLightblue20030p = Color(0x4A0F8BD9);
+  static const paletteLightBlue200 = Color(0xFF0F8BD9);
+  static const paletteLightBlue20090p = Color(0xE60F8BD9);
+  static const paletteLightBlue20070p = Color(0xB30F8BD9);
+  static const paletteLightBlue20050p = Color(0x800F8BD9);
+  static const paletteLightBlue20030p = Color(0x4A0F8BD9);
 
-  static const paletteLightblue300 = Color(0xFF087EC7);
-  static const paletteLightblue30090p = Color(0xE6087EC7);
-  static const paletteLightblue30070p = Color(0xB3087EC7);
-  static const paletteLightblue30050p = Color(0x80087EC7);
-  static const paletteLightblue30030p = Color(0x4A087EC7);
+  static const paletteLightBlue300 = Color(0xFF087EC7);
+  static const paletteLightBlue30090p = Color(0xE6087EC7);
+  static const paletteLightBlue30070p = Color(0xB3087EC7);
+  static const paletteLightBlue30050p = Color(0x80087EC7);
+  static const paletteLightBlue30030p = Color(0x4A087EC7);
 
-  static const paletteLightblue400 = Color(0xFF0070B5);
-  static const paletteLightblue40090p = Color(0xE60070B5);
-  static const paletteLightblue40070p = Color(0xB30070B5);
-  static const paletteLightblue40050p = Color(0x800070B5);
-  static const paletteLightblue40030p = Color(0x4A0070B5);
+  static const paletteLightBlue400 = Color(0xFF0070B5);
+  static const paletteLightBlue40090p = Color(0xE60070B5);
+  static const paletteLightBlue40070p = Color(0xB30070B5);
+  static const paletteLightBlue40050p = Color(0x800070B5);
+  static const paletteLightBlue40030p = Color(0x4A0070B5);
 
   static const paletteDeepblue100 = Color(0xFF4A88E5);
   static const paletteDeepblue10090p = Color(0xE64A88E5);
@@ -459,7 +461,7 @@ class Palette {
     paletteGreen100,
     paletteMint100,
     paletteSky100,
-    paletteLightblue100,
+    paletteLightBlue100,
     paletteDeepblue100,
     paletteIndigo100,
     paletteViolet100,
@@ -477,7 +479,7 @@ class Palette {
     paletteGreen200,
     paletteMint200,
     paletteSky200,
-    paletteLightblue200,
+    paletteLightBlue200,
     paletteDeepblue200,
     paletteIndigo200,
     paletteViolet200,

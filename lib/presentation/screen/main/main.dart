@@ -28,14 +28,16 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
               Colors.blueAccent,
               Colors.white,
               Colors.white,
-            ])),
+            ],
+          ),
+        ),
         child: Column(
           children: [
             _header(),
@@ -77,12 +79,14 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   Widget _card(int index, AppCatalog catalog) {
+    const colors = Palette.mainColors;
+    final color = colors[Random().nextInt(colors.length)];
+
     return Container(
       height: 140,
       margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
       decoration: BoxDecoration(
-        color:
-            Palette.mainColors[Random().nextInt(Palette.mainColors.length - 1)],
+        color: color,
         borderRadius: BorderRadius.circular(6),
         boxShadow: const [
           BoxShadow(
@@ -91,6 +95,15 @@ class _MainScreenState extends State<MainScreen> {
             blurRadius: 3.0,
           ),
         ],
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            color,
+            color.withOpacity(0.8),
+            Colors.white,
+          ],
+        ),
       ),
       child: Material(
         color: Colors.transparent,

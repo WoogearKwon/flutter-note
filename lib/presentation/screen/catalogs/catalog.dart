@@ -48,6 +48,9 @@ class CatalogScreen extends StatelessWidget {
     int index,
     AppScreen appScreen,
   ) {
+    const colors = Palette.mainColors;
+    final color = colors[Random().nextInt(colors.length)];
+
     return GestureDetector(
       onTap: () {
         switch (appScreen.type) {
@@ -70,6 +73,15 @@ class CatalogScreen extends StatelessWidget {
               blurRadius: 3.0,
             ),
           ],
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              color,
+              color.withOpacity(0.8),
+              Colors.white,
+            ],
+          ),
         ),
         child: Container(
           padding: const EdgeInsets.all(10),
