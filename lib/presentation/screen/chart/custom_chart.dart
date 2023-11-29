@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_note/exports.dart';
 
 export 'components/double_bar_charts.dart';
+export 'components/lined_bar_chart.dart';
 
 class CustomChartScreen extends StatelessWidget {
   const CustomChartScreen({super.key});
@@ -28,8 +29,9 @@ class CustomChartScreen extends StatelessWidget {
             margin: const EdgeInsets.all(10),
             child: Column(
               children: [
-                _chartOne(),
+                _doubleBarChart(),
                 const SizedBox(height: 20),
+                _linedBarChart(),
               ],
             ),
           ),
@@ -38,17 +40,26 @@ class CustomChartScreen extends StatelessWidget {
     );
   }
 
-  Widget _chartOne() {
+  Widget _doubleBarChart() {
     return SizedBox(
       width: double.infinity,
       child: DoubleBarChartView(
-        chartData: DoubleBarChartData(items: _analysisChartData),
+        chartData: DoubleBarChartData(items: _doubleBarChartData),
+      ),
+    );
+  }
+
+  Widget _linedBarChart() {
+    return SizedBox(
+      width: double.infinity,
+      child: LinedBarChartView(
+        chartData: LinedBarChartData(items: _chartData),
       ),
     );
   }
 }
 
-final _analysisChartData = [
+final _doubleBarChartData = [
   DiagnosisChartData(
     category: 'Case1',
     earlyValue: 4.5,
@@ -69,5 +80,24 @@ final _analysisChartData = [
     lateValue: 3.5,
     normalRangeHigh: 4.6,
     normalRangeLow: 2.1,
+  ),
+];
+
+final _chartData = [
+  SingleBarChartData(
+    value: 8,
+    duration: "09.16\n-09.22",
+  ),
+  SingleBarChartData(
+    value: 7,
+    duration: "09.16\n-09.22",
+  ),
+  SingleBarChartData(
+    value: 5,
+    duration: "09.16\n-09.22",
+  ),
+  SingleBarChartData(
+    value: 13,
+    duration: "09.16\n-09.22",
   ),
 ];

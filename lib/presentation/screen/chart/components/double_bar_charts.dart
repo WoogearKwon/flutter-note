@@ -304,11 +304,12 @@ class _DiagnosisChartPainter extends CustomPainter {
     if (value <= 0) return;
 
     final text = TextSpan(
-        text: value.toString(),
-        style: const TextStyle(
-          fontSize: 14,
-          color: Colors.white,
-        ));
+      text: value.toString(),
+      style: const TextStyle(
+        fontSize: 14,
+        color: Colors.white,
+      ),
+    );
     final textPainter = TextPainter()
       ..text = text
       ..textDirection = TextDirection.ltr
