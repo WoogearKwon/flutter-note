@@ -7,13 +7,13 @@ class ScreenProvider {
   static List<AppCatalog> catalogs = [
     AppCatalog(
       title: 'Widget Catalogs',
-      description: '',
+      description: 'Screens Samples Using Widgets',
       type: AppCatalogType.widget,
       screens: [],
     ),
     AppCatalog(
       title: 'Canvas Drawing',
-      description: '',
+      description: 'Screen Samples Using Canvas',
       type: AppCatalogType.canvas,
       screens: [
         AppScreen(

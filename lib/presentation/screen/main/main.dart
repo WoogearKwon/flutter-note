@@ -52,7 +52,7 @@ class _MainScreenState extends State<MainScreen> {
       height: 200,
       child: Center(
         child: Text(
-          'Header',
+          'Home',
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 44,
@@ -97,21 +97,45 @@ class _MainScreenState extends State<MainScreen> {
         borderRadius: BorderRadius.circular(6),
         child: InkWell(
           onTap: () {
-            AppNavigator.navigateTo(
-              context,
-              AppPath.catalogs,
-              arguments: CatalogScreenArgs(catalog: catalog)
-            );
+            AppNavigator.navigateTo(context, AppPath.catalogs,
+                arguments: CatalogScreenArgs(catalog: catalog));
           },
-          child: Center(
-            child: Text(
-              catalog.title,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: Row(
+              children: <Widget>[
+                Flexible(
+                  flex: 2,
+                  child: Text(
+                    catalog.title,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 20,
+                  child: VerticalDivider(
+                    width: 1,
+                    color: Colors.white,
+                    indent: 20,
+                    endIndent: 20,
+                  ),
+                ),
+                Flexible(
+                  flex: 5,
+                  child: Text(
+                    catalog.description,
+                    textAlign: TextAlign.left,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),

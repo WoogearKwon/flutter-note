@@ -60,25 +60,42 @@ class CatalogScreen extends StatelessWidget {
       child: Container(
         margin: _getMargin(index),
         decoration: BoxDecoration(
-            color: Palette
-                .mainColors[Random().nextInt(Palette.mainColors.length - 1)],
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: const [
-              BoxShadow(
-                color: Colors.grey,
-                offset: Offset(3.0, 3.0),
-                blurRadius: 3.0,
-              ),
-            ]),
-        child: Center(
-          child: Text(
-            appScreen.title,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 32,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
+          color: Palette
+              .mainColors[Random().nextInt(Palette.mainColors.length - 1)],
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.grey,
+              offset: Offset(3.0, 3.0),
+              blurRadius: 3.0,
             ),
+          ],
+        ),
+        child: Container(
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            children: [
+              Text(
+                appScreen.title,
+                textAlign: TextAlign.left,
+                style: const TextStyle(
+                  fontSize: 22,
+                  color: Colors.white,
+                ),
+              ),
+              const Divider(
+                height: 20,
+                color: Colors.white,
+              ),
+              Text(
+                appScreen.description,
+                textAlign: TextAlign.left,
+                style: const TextStyle(
+                  fontSize: 18,
+                  color: Colors.white,
+                ),
+              )
+            ],
           ),
         ),
       ),
