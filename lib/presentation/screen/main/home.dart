@@ -4,25 +4,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_note/exports.dart';
 
 @immutable
-class MainScreenArgs {
+class HomeScreenArgs {
   final List<AppCatalog> catalogs;
 
-  const MainScreenArgs({required this.catalogs});
+  const HomeScreenArgs({required this.catalogs});
 }
 
-class MainScreen extends StatefulWidget {
-  final MainScreenArgs args;
+class HomeScreen extends StatefulWidget {
+  final HomeScreenArgs args;
 
-  const MainScreen({
+  const HomeScreen({
     super.key,
     required this.args,
   });
 
   @override
-  State<MainScreen> createState() => _MainScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

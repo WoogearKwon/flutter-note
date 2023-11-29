@@ -16,8 +16,8 @@ Map<String, Handler> get _routeMapping => <String, Handler>{
 
 final _mainHandler = Handler(
   handlerFunc: (context, params) {
-    return MainScreen(
-      args: MainScreenArgs(catalogs: ScreenProvider.catalogs),
+    return HomeScreen(
+      args: HomeScreenArgs(catalogs: ScreenProvider.catalogs),
     );
   },
 );
