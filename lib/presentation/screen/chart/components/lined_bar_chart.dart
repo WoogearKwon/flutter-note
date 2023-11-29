@@ -79,20 +79,23 @@ class _LinedBarChartViewState extends State<LinedBarChartView> {
   Widget build(BuildContext context) {
     return AspectRatio(
       aspectRatio: defaultAspectRatio,
-      child: CustomPaint(
-        painter: _ChartPainter(
-            chartData: widget.chartData,
-            lineChartColor: widget.lineChartColor ?? Palette.retroMint03Basic,
-            barChartColor: widget.barChartColor ?? Palette.retroMint03Basic,
-            barChartBorderColor:
-            widget.barChartBorderColor ?? Palette.retroMint04Dark,
-            alertChartColor: widget.alertChartColor ?? Palette.retroMint03Basic,
-            alertBorderColor:
-            widget.alertBorderColor ?? Palette.retroMint04Dark,
-            onChartSelected: () {
-              setState(() {});
-            },
-            alertPredicate: widget.alertPredicate),
+      child: Container(
+        color: Palette.transparent,
+        child: CustomPaint(
+          painter: _ChartPainter(
+              chartData: widget.chartData,
+              lineChartColor: widget.lineChartColor ?? Palette.retroMint03Basic,
+              barChartColor: widget.barChartColor ?? Palette.retroMint03Basic,
+              barChartBorderColor:
+              widget.barChartBorderColor ?? Palette.retroMint04Dark,
+              alertChartColor: widget.alertChartColor ?? Palette.retroMint03Basic,
+              alertBorderColor:
+              widget.alertBorderColor ?? Palette.retroMint04Dark,
+              onChartSelected: () {
+                setState(() {});
+              },
+              alertPredicate: widget.alertPredicate),
+        ),
       ),
     );
   }

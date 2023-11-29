@@ -53,7 +53,9 @@ class DoubleBarChartView extends StatelessWidget {
           right: 21,
         ),
         decoration: BoxDecoration(
-            color: Palette.grey01Bg, borderRadius: BorderRadius.circular(16)),
+          color: Palette.grey01Bg,
+          borderRadius: BorderRadius.circular(16),
+        ),
         child: Column(
           children: [
             const _NormalRangeIndicator(),
