@@ -12,6 +12,7 @@ Map<String, Handler> get _routeMapping => <String, Handler>{
       AppPath.catalogs: _catalogsHandler,
       AppPath.unsplash: _unsplash,
       AppPath.customChart: _customChart,
+      AppPath.notificationCenter: _notificationCenter,
     };
 
 final _mainHandler = Handler(
@@ -29,6 +30,12 @@ final _catalogsHandler = Handler(
   },
 );
 
+final _customChart = Handler(
+  handlerFunc: (context, params) {
+    return const CustomChartScreen();
+  },
+);
+
 final _unsplash = Handler(
   handlerFunc: (context, params) {
     // return const UnsplashPhotosScreen();
@@ -39,8 +46,9 @@ final _unsplash = Handler(
   },
 );
 
-final _customChart = Handler(
+final _notificationCenter = Handler(
   handlerFunc: (context, params) {
-    return const CustomChartScreen();
+    // return const UnsplashPhotosScreen();
+    return const NotificationCenterScreen();
   },
 );

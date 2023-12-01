@@ -33,4 +33,5 @@ class AppScreen {
 enum AppScreenType {
   unsplashDemo,
   customChart,
+  notificationCenter,
 }

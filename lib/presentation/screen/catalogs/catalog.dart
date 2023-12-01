@@ -58,6 +58,8 @@ class CatalogScreen extends StatelessWidget {
             AppNavigator.navigateTo(context, AppPath.unsplash);
           case AppScreenType.customChart:
             AppNavigator.navigateTo(context, AppPath.customChart);
+          case AppScreenType.notificationCenter:
+            AppNavigator.navigateTo(context, AppPath.notificationCenter);
         }
       },
       child: Container(
@@ -106,7 +108,7 @@ class CatalogScreen extends StatelessWidget {
                   fontSize: 18,
                   color: Colors.white,
                 ),
-              )
+              ),
             ],
           ),
         ),

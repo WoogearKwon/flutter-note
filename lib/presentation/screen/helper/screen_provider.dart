@@ -32,6 +32,11 @@ class ScreenProvider {
           title: "Unsplash demo",
           description: "Using Unsplash API Demo",
           type: AppScreenType.unsplashDemo
+        ),
+        AppScreen(
+            title: "Notification Center",
+            description: "Mimicking iOS Notification Center",
+            type: AppScreenType.notificationCenter
         )
       ],
     )
