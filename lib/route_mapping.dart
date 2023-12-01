@@ -38,7 +38,6 @@ final _customChart = Handler(
 
 final _unsplash = Handler(
   handlerFunc: (context, params) {
-    // return const UnsplashPhotosScreen();
     return ChangeNotifierProvider(
         create: (context) =>
             UnsplashPhotosViewModel(unsplashRepository: Injector.find()),
@@ -48,7 +47,6 @@ final _unsplash = Handler(
 
 final _notificationCenter = Handler(
   handlerFunc: (context, params) {
-    // return const UnsplashPhotosScreen();
     return const NotificationCenterScreen();
   },
 );
