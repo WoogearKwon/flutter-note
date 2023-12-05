@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
@@ -44,21 +45,11 @@ class NotificationCenterScreen extends StatelessWidget {
 
   Widget _backgroundContainer({required Widget child}) {
     return Stack(
+      alignment: Alignment.center,
+      fit: StackFit.expand,
       children: [
-        Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                Colors.blue,
-                Colors.red,
-                Colors.yellow,
-                Colors.white,
-              ],
-            ),
-          ),
-        ),
+        const Image(
+            image: AssetImage(Assets.samBackgroundImage), fit: BoxFit.cover),
         child
       ],
     );
@@ -80,13 +71,6 @@ class NotificationCenterScreen extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 10),
-        // ListView.builder(
-        //   physics: const ClampingScrollPhysics(),
-        //   itemCount: _notificationContents.length,
-        //   itemBuilder: (_, index) {
-        //     return _notificationContents[index];
-        //   },
-        // ),
         NotificationCard(
           title: '리디',
           subTitle: '<세이노의 가르침> 다운로드 성공',
@@ -99,7 +83,7 @@ class NotificationCenterScreen extends StatelessWidget {
         NotificationCard(
           title: '긴급재난문자',
           subTitle:
-          '[기상청] 11월30일04:55 경북 경주시 동남동쪽 19km 지역 규모4.3 지진발생/낙하물 주의, 국민재난안전포털 행동ㅇ요령에 따라 대응, 여진주의',
+              '[기상청] 11월30일04:55 경북 경주시 동남동쪽 19km 지역 규모4.3 지진발생/낙하물 주의, 국민재난안전포털 행동ㅇ요령에 따라 대응, 여진주의',
           time: '3h ago',
           iconRes: IconRes(
             iconData: Icons.warning,
@@ -148,64 +132,69 @@ class NotificationCard extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(vertical: 13),
       decoration: BoxDecoration(
-        color: Palette.white.withAlpha(90),
+        color: Palette.white.withAlpha(130),
         borderRadius: BorderRadius.circular(20),
       ),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
-        child: Row(
-          children: [
-            Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                color: iconRes.color,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Icon(iconRes.iconData),
-            ),
-            const SizedBox(width: 15),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        title,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 22, sigmaY: 22),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
+            child: Row(
+              children: [
+                Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: iconRes.color,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Icon(iconRes.iconData),
+                ),
+                const SizedBox(width: 15),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            title,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            time,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 13,
+                              color: Palette.paletteGray10050p,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 5,
                       ),
                       Text(
-                        time,
-                        textAlign: TextAlign.center,
+                        subTitle,
+                        textAlign: TextAlign.left,
                         style: const TextStyle(
-                          fontSize: 13,
-                          color: Palette.paletteGray10050p,
+                          fontSize: 14,
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    subTitle,
-                    textAlign: TextAlign.left,
-                    style: const TextStyle(
-                      fontSize: 14,
-                    ),
-                  ),
-                ],
-              ),
-            )
-          ],
+                )
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -225,7 +214,7 @@ final List<Widget> _notificationContents = [
   NotificationCard(
     title: '긴급재난문자',
     subTitle:
-    '[기상청] 11월30일04:55 경북 경주시 동남동쪽 19km 지역 규모4.3 지진발생/낙하물 주의, 국민재난안전포털 행동ㅇ요령에 따라 대응, 여진주의',
+        '[기상청] 11월30일04:55 경북 경주시 동남동쪽 19km 지역 규모4.3 지진발생/낙하물 주의, 국민재난안전포털 행동ㅇ요령에 따라 대응, 여진주의',
     time: '3h ago',
     iconRes: IconRes(
       iconData: Icons.warning,
