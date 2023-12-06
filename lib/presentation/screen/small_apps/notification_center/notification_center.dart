@@ -42,63 +42,61 @@ class _NotificationCenterScreenState extends State<NotificationCenterScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          children: [
-            _backgroundContainer(
-              child: Container(
-                margin: const EdgeInsets.all(10),
-                child: Column(
-                  children: [
-                    const SizedBox(height: 50),
-                    const Text(
-                      'Thursday, September 30',
-                      style: TextStyle(
-                        fontSize: 17,
+      body: Stack(
+        children: [
+          _backgroundContainer(
+            child: Container(
+              margin: const EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  const SizedBox(height: 50),
+                  const Text(
+                    'Thursday, September 30',
+                    style: TextStyle(
+                      fontSize: 17,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const Text(
+                    '8:23',
+                    style: TextStyle(
+                        fontSize: 100,
+                        height: 1.1,
                         color: Colors.white,
-                      ),
-                    ),
-                    const Text(
-                      '8:23',
-                      style: TextStyle(
-                          fontSize: 100,
-                          height: 1.1,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(height: 70),
-                    _notifications(
-                      onClickCard: (cardInfo) {
-                        setState(() {
-                          if (_selectedKey == cardInfo.widget.key) {
-                            _cardInfo = null;
-                            _selectedKey = null;
-                            _blurController.reverse();
-                          } else {
-                            _selectedKey = cardInfo.widget.key;
-                            _cardInfo = cardInfo;
-                            _blurController.forward();
-                          }
-                        });
-                      },
-                    )
-                  ],
-                ),
+                        fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 70),
+                  _notifications(
+                    onClickCard: (cardInfo) {
+                      setState(() {
+                        if (_selectedKey == cardInfo.widget.key) {
+                          _cardInfo = null;
+                          _selectedKey = null;
+                          _blurController.reverse();
+                        } else {
+                          _selectedKey = cardInfo.widget.key;
+                          _cardInfo = cardInfo;
+                          _blurController.forward();
+                        }
+                      });
+                    },
+                  )
+                ],
               ),
             ),
-            if (_cardInfo != null)
-              Positioned(
-                left: _cardInfo!.offset.dx,
-                top: _cardInfo!.offset.dy,
-                width: _cardInfo!.size.width,
-                height: _cardInfo!.size.height,
-                child: _cardInfo!.widget.copy(
-                  selected: true,
-                  key: _cardInfo!.widget.key,
-                ),
+          ),
+          if (_cardInfo != null)
+            Positioned(
+              left: _cardInfo!.offset.dx,
+              top: _cardInfo!.offset.dy,
+              width: _cardInfo!.size.width,
+              height: _cardInfo!.size.height,
+              child: _cardInfo!.widget.copy(
+                selected: true,
+                key: _cardInfo!.widget.key,
               ),
-          ],
-        ),
+            ),
+        ],
       ),
     );
   }
