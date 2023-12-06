@@ -92,16 +92,9 @@ class _NotificationCenterScreenState extends State<NotificationCenterScreen>
                 top: _cardInfo!.offset.dy,
                 width: _cardInfo!.size.width,
                 height: _cardInfo!.size.height,
-                child: IntrinsicHeight(
-                  child: NotificationCard(
-                    selected: true,
-                    title: _cardInfo!.widget.title,
-                    subTitle: _cardInfo!.widget.subTitle,
-                    time: _cardInfo!.widget.time,
-                    iconRes: _cardInfo!.widget.iconRes,
-                    onClick: _cardInfo!.widget.onClick,
-                    key: _cardInfo!.widget.key,
-                  ),
+                child: _cardInfo!.widget.copy(
+                  selected: true,
+                  key: _cardInfo!.widget.key,
                 ),
               ),
           ],
@@ -147,7 +140,7 @@ class _NotificationCenterScreenState extends State<NotificationCenterScreen>
                   fontSize: 26,
                   color: Colors.white,
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -237,6 +230,26 @@ class NotificationCard extends StatelessWidget {
     required this.onClick,
     super.key,
   });
+
+  NotificationCard copy({
+    Key? key,
+    bool? selected,
+    String? title,
+    String? subTitle,
+    String? time,
+    IconRes? iconRes,
+    OnClickCard? onClick,
+  }) {
+    return NotificationCard(
+      key: key ?? this.key,
+      selected: selected ?? this.selected,
+      title: title ?? this.title,
+      subTitle: subTitle ?? this.subTitle,
+      time: time ?? this.time,
+      iconRes: iconRes ?? this.iconRes,
+      onClick: onClick ?? this.onClick,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
