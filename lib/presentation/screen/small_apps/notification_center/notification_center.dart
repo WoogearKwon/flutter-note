@@ -13,8 +13,8 @@ class NotificationCenterScreen extends StatefulWidget {
 
 class _NotificationCenterScreenState extends State<NotificationCenterScreen>
     with SingleTickerProviderStateMixin {
+  CardStackInfo? _cardInfo;
   Key? _selectedKey;
-  NotificationCard? _selectedWidget;
 
   late AnimationController _blurController;
   late Animation<double> _animation;
@@ -31,11 +31,6 @@ class _NotificationCenterScreenState extends State<NotificationCenterScreen>
     _animation.addListener(() {
       setState(() {});
     });
-  }
-
-  @override
-  void setState(VoidCallback fn) {
-    super.setState(fn);
   }
 
   @override
@@ -73,15 +68,15 @@ class _NotificationCenterScreenState extends State<NotificationCenterScreen>
                     ),
                     const SizedBox(height: 70),
                     _notifications(
-                      onClickCard: (key, widget) {
+                      onClickCard: (cardInfo) {
                         setState(() {
-                          if (_selectedKey == key) {
+                          if (_selectedKey == cardInfo.widget.key) {
+                            _cardInfo = null;
                             _selectedKey = null;
-                            _selectedWidget = null;
                             _blurController.reverse();
                           } else {
-                            _selectedKey = key;
-                            _selectedWidget = widget;
+                            _selectedKey = cardInfo.widget.key;
+                            _cardInfo = cardInfo;
                             _blurController.forward();
                           }
                         });
@@ -91,21 +86,21 @@ class _NotificationCenterScreenState extends State<NotificationCenterScreen>
                 ),
               ),
             ),
-            if (_selectedWidget != null)
-              Align(
-                alignment: Alignment.center,
-                child: Container(
-                  padding: const EdgeInsets.all(13),
-                  child: IntrinsicHeight(
-                    child: NotificationCard(
-                      selected: true,
-                      title: _selectedWidget!.title,
-                      subTitle: _selectedWidget!.subTitle,
-                      time: _selectedWidget!.time,
-                      iconRes: _selectedWidget!.iconRes,
-                      onClick: _selectedWidget!.onClick,
-                      key: _selectedWidget!.key,
-                    ),
+            if (_cardInfo != null)
+              Positioned(
+                left: _cardInfo!.offset.dx,
+                top: _cardInfo!.offset.dy,
+                width: _cardInfo!.size.width,
+                height: _cardInfo!.size.height,
+                child: IntrinsicHeight(
+                  child: NotificationCard(
+                    selected: true,
+                    title: _cardInfo!.widget.title,
+                    subTitle: _cardInfo!.widget.subTitle,
+                    time: _cardInfo!.widget.time,
+                    iconRes: _cardInfo!.widget.iconRes,
+                    onClick: _cardInfo!.widget.onClick,
+                    key: _cardInfo!.widget.key,
                   ),
                 ),
               ),
@@ -165,19 +160,19 @@ class _NotificationCenterScreenState extends State<NotificationCenterScreen>
             iconData: Icons.menu_book_rounded,
             color: Palette.paletteBlue100,
           ),
-          onClick: (key, widget) => onClickCard(key, widget),
+          onClick: onClickCard,
           key: UniqueKey(),
         ),
         NotificationCard(
           title: '긴급재난문자',
           subTitle:
-              '[기상청] 11월30일04:55 경북 경주시 동남동쪽 19km 지역 규모4.3 지진발생/낙하물 주의, 국민재난안전포털 행동ㅇ요령에 따라 대응, 여진주의',
+              '[기상청] 11월30일04:55 경북 경주시 동남동쪽 19km 지역 규모4.3 지진발생/낙하물 주의, 국민재난안전포털 행동요령에 따라 대응, 여진주의',
           time: '3h ago',
           iconRes: IconRes(
             iconData: Icons.warning,
             color: Palette.paletteYellow100,
           ),
-          onClick: (key, widget) => onClickCard(key, widget),
+          onClick: onClickCard,
           key: UniqueKey(),
         ),
         NotificationCard(
@@ -188,18 +183,18 @@ class _NotificationCenterScreenState extends State<NotificationCenterScreen>
             iconData: Icons.play_circle_filled,
             color: Palette.red03Basic,
           ),
-          onClick: (key, widget) => onClickCard(key, widget),
+          onClick: onClickCard,
           key: UniqueKey(),
         ),
         NotificationCard(
-          title: '리디',
-          subTitle: '<맹자의 가르침> 다운로드 성공',
+          title: '병원 예약 정보',
+          subTitle: '강남 삼성 병원 예약 완료',
           time: 'now',
           iconRes: IconRes(
-            iconData: Icons.menu_book_rounded,
-            color: Palette.paletteBlue100,
+            iconData: Icons.medical_information,
+            color: Palette.white,
           ),
-          onClick: (key, widget) => onClickCard(key, widget),
+          onClick: onClickCard,
           key: UniqueKey(),
         ),
       ],
@@ -207,9 +202,21 @@ class _NotificationCenterScreenState extends State<NotificationCenterScreen>
   }
 }
 
+@immutable
+class CardStackInfo {
+  final NotificationCard widget;
+  final Offset offset;
+  final Size size;
+
+  const CardStackInfo({
+    required this.widget,
+    required this.offset,
+    required this.size,
+  });
+}
+
 typedef OnClickCard = Function(
-  Key? key,
-  NotificationCard widget,
+  CardStackInfo card,
 );
 
 @immutable
@@ -221,7 +228,7 @@ class NotificationCard extends StatelessWidget {
   final IconRes iconRes;
   final OnClickCard onClick;
 
-  NotificationCard({
+  const NotificationCard({
     this.selected = false,
     required this.title,
     required this.subTitle,
@@ -231,18 +238,15 @@ class NotificationCard extends StatelessWidget {
     super.key,
   });
 
-  final GlobalKey gKey = GlobalKey();
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        onClick(key, this);
-
-        // RenderBox box = gKey.currentContext?.findRenderObject() as RenderBox;
-        // Offset position = box.localToGlobal(Offset.zero);
-        // double y = position.dy;
-        // print('woogear position = $position');
+        RenderBox box = context.findRenderObject() as RenderBox;
+        Offset offset = box.localToGlobal(Offset.zero);
+        Size size = box.size;
+        final card = CardStackInfo(widget: this, offset: offset, size: size);
+        onClick(card);
       },
       child: Container(
         margin: const EdgeInsets.only(bottom: 10),
